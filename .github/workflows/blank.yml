@@ -1,0 +1,24 @@
+name: Git Safe Lab CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lab-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show repository structure
+        run: ls -R
+
+      - name: Print git log graph (engineering debug)
+        run: git log --oneline --graph --decorate --all || echo "No git history yet"
+
+      - name: Simulate CI test
+        run: echo "CI is running successfully on Git Safe Lab 🚀"
